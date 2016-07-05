@@ -17,8 +17,8 @@ import com.aio.bean.XsXjbView;
 import com.aio.bean.XsZpView;
 import com.aio.exception.ConnectDBException;
 import com.aio.exception.NullUserInfoException;
-import com.aio.exception.NullUserScoreException;
-import com.aio.service.QueryScoreService;
+import com.aio.exception.NullUserGradeException;
+import com.aio.service.QueryGradeService;
 import com.aio.service.QueryUserInfoService;
 import com.aio.service.QueryUserPhotoService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -44,7 +44,7 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 	private QueryUserPhotoService queryUserPhotoService;
 
 	@Autowired
-	private QueryScoreService queryScoreService;
+	private QueryGradeService queryGradeService;
 
 	private String xh;
 
@@ -73,7 +73,7 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 			}
 
 			logger.info("--读取学生成绩开始--");
-			List<XsCjAllTdkchView> list = queryScoreService.getCurrentScoresByXh(xh);
+			List<XsCjAllTdkchView> list = queryGradeService.getCurrentGradeByXh(xh);
 			logger.info("--读取学生成绩结束，向session存放成绩信息--");
 			result.put("XsCj", list);
 
@@ -85,7 +85,7 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 			e.printStackTrace();
 			return "404";
 
-		} catch (NullUserScoreException e) {
+		} catch (NullUserGradeException e) {
 			e.printStackTrace();
 			return "404";
 		} catch (ConnectDBException e) {

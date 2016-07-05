@@ -4,7 +4,7 @@ body {
 	margin: auto;
 	width: 1280px;
 	height: 1024px;
-	background-image: url(../image/bg.png);
+	background-image: url(../image/index_bg.png);
 }
 
 a {
@@ -39,28 +39,28 @@ img {
 }
 
 .button a[action-type=kxjs] {
-	left: 1100px;
-	top: 375px;
+	left: 845px;
+	top: 450px;
 }
 
 .button a[action-type=dycj] {
-	left: 820px;
-	top: 290px;
+	left: 595px;
+	top: 247px;
 }
 
 .button a[action-type=gzzd] {
-	left: 630px;
-	top: 540px;
+	left: 330px;
+	top: 450px;
 }
 
 .button a[action-type=xl] {
-	left: 785px;
-	top: 790px;
+	left: 445px;
+	top: 735px;
 }
 
 .button a[action-type=gg] {
-	left: 1087px;
-	top: 730px;
+	left: 767px;
+	top: 705px;
 }
 /* 半透明的遮罩层 */
 .b-panel {
@@ -82,7 +82,6 @@ img {
 	filter: alpha(opacity = 50);
 	-moz-opacity: 0.5;
 	-khtml-opacity: 0.5;
-	left: 0;
 }
 
 .m-panel {
@@ -225,5 +224,5 @@ img {
 }
 /*登录、刷卡*/
 .button-box {
-	 
+	
 }

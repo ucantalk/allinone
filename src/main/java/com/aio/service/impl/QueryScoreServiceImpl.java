@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aio.bean.XsCjAllTdkchView;
-import com.aio.dao.QueryScoreDao;
+import com.aio.dao.QueryGradeDao;
 import com.aio.exception.ConnectDBException;
-import com.aio.exception.NullUserScoreException;
-import com.aio.service.QueryScoreService;
+import com.aio.exception.NullUserGradeException;
+import com.aio.service.QueryGradeService;
 
 @Transactional
-@Service("queryScoreService")
-public class QueryScoreServiceImpl implements QueryScoreService {
+@Service("queryGradeService")
+public class QueryScoreServiceImpl implements QueryGradeService {
 	@Autowired
-	private QueryScoreDao queryScoreDao;
+	private QueryGradeDao queryGradeDao;
 
 	/**
 	 * 获取用户成绩
@@ -31,18 +31,18 @@ public class QueryScoreServiceImpl implements QueryScoreService {
 	 * @return List<XsCjAllTdkchView>
 	 * 
 	 * 
-	 * @exception NullUserScoreException
+	 * @exception NullUserGradeException
 	 *                无学生成绩数据异常
 	 * @exception ConnectDBException
 	 *                查询数据异常，连接数据库异常
 	 * 
 	 */
 	@Override
-	public List<XsCjAllTdkchView> getCurrentScoresByXh(String xh) throws NullUserScoreException, ConnectDBException {
+	public List<XsCjAllTdkchView> getCurrentGradeByXh(String xh) throws NullUserGradeException, ConnectDBException {
 		List<XsCjAllTdkchView> xsCjTdkchView;
 
 		try {
-			xsCjTdkchView = queryScoreDao.getByXh(xh);
+			xsCjTdkchView = queryGradeDao.getByXh(xh);
 			if (xsCjTdkchView != null) {
 				if (xsCjTdkchView.size() > 0) {
 					for (XsCjAllTdkchView tmp : xsCjTdkchView) {
@@ -51,7 +51,7 @@ public class QueryScoreServiceImpl implements QueryScoreService {
 				}
 				return xsCjTdkchView;
 			}
-			throw new NullUserScoreException("读取学生数据出错:无此学生或学生数据为空");
+			throw new NullUserGradeException("读取学生数据出错:无此学生或学生数据为空");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new ConnectDBException("连接数据库失败或者查询数据出错");

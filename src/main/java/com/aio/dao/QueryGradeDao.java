@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.aio.bean.XsCjAllTdkchView;
 
-public interface QueryScoreDao {
+public interface QueryGradeDao {
 
 	public List<XsCjAllTdkchView> getByXh(String xh) throws SQLException;
 

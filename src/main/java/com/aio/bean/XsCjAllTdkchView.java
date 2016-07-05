@@ -40,6 +40,10 @@ public class XsCjAllTdkchView {
 
 	private String xsYwcj;
 
+//	private String djm;
+//
+//	private String ywdjm;
+
 	@Id
 	public XsCjAlltdkchViewPk getId() {
 		return id;
@@ -147,6 +151,24 @@ public class XsCjAllTdkchView {
 	public void setDjcj(BigDecimal djcj) {
 		this.djcj = djcj;
 	}
+
+//	@Column(name = "djm")
+//	public String getDjm() {
+//		return djm;
+//	}
+//
+//	public void setDjm(String djm) {
+//		this.djm = djm;
+//	}
+//
+//	@Column(name = "ywdjm")
+//	public String getYwdjm() {
+//		return ywdjm;
+//	}
+//
+//	public void setYwdjm(String ywdjm) {
+//		this.ywdjm = ywdjm;
+//	}
 
 	@Transient
 	public String getXsZwcj() {

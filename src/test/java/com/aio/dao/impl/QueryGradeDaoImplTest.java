@@ -1,5 +1,6 @@
-package com.aio.service.impl;
+package com.aio.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Before;
@@ -11,14 +12,10 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.aio.dao.QueryGradeDao;
-import com.aio.exception.ConnectDBException;
-import com.aio.exception.NullUserGradeException;
-import com.aio.service.QueryGradeService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-hibernate.xml" })
-public class QueryScoreServiceImplTest extends AbstractJUnit4SpringContextTests {
-
+public class QueryGradeDaoImplTest extends AbstractJUnit4SpringContextTests {
 	@Autowired
 	private QueryGradeDao queryGradeDao;
 
@@ -27,10 +24,10 @@ public class QueryScoreServiceImplTest extends AbstractJUnit4SpringContextTests 
 	}
 
 	@Test
-	public void testGetCurrentScoresByXh() {
+	public void testGetByXh() {
 		try {
-			List r = queryGradeDao.getByXh("2013211090");
-		} catch (Exception e) {
+			List l = queryGradeDao.getByXh("2013211090");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
