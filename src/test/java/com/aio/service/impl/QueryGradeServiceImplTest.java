@@ -17,10 +17,10 @@ import com.aio.service.QueryGradeService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-hibernate.xml" })
-public class QueryScoreServiceImplTest extends AbstractJUnit4SpringContextTests {
+public class QueryGradeServiceImplTest extends AbstractJUnit4SpringContextTests {
 
 	@Autowired
-	private QueryGradeDao queryGradeDao;
+	private QueryGradeService queryGradeService;
 
 	@Before
 	public void setUp() throws Exception {
@@ -28,9 +28,12 @@ public class QueryScoreServiceImplTest extends AbstractJUnit4SpringContextTests 
 
 	@Test
 	public void testGetCurrentScoresByXh() {
+
 		try {
-			List r = queryGradeDao.getByXh("2013211090");
-		} catch (Exception e) {
+			List r = queryGradeService.getCurrentGradeByXh("2013211090");
+		} catch (NullUserGradeException e) {
+			e.printStackTrace();
+		} catch (ConnectDBException e) {
 			e.printStackTrace();
 		}
 	}

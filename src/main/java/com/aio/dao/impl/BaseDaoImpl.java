@@ -291,7 +291,7 @@ public class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
 	}
      
 	/**
-	 * <根据SQL语句，得到对应的list>
+	 * <根据SQL语句，得到对应的list并转换成对应实体类>
 	 * 
 	 * @param sqlString
 	 *            SQL语句

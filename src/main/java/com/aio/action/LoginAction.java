@@ -17,14 +17,8 @@ import com.opensymphony.xwork2.ActionSupport;
 @Namespace("/")
 public class LoginAction extends ActionSupport implements SessionAware {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7520061467143978294L;
 
-	/**
-	 * 
-	 */
 	private String userName;
 
 	private String passWord;

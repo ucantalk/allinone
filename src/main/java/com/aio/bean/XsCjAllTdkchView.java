@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -12,15 +14,22 @@ import javax.persistence.Transient;
 @Table(name = "MODIFIED_XS_CJ_ALL_TDKCH_VIEW")
 public class XsCjAllTdkchView {
 
-	private XsCjAlltdkchViewPk id;
+	// private XsCjAlltdkchViewPk id;
+	private String xh;
+
+	private String kch;
+
+	private String kcm;
+	
+	private String zxjxjhh;
 
 	private String kcsxdm;
 
 	private String kcsxmc;
 
-	private BigDecimal kccj;
+	private String kccj;
 
-	private Double xf;
+	private String xf;
 
 	private String kssj;
 
@@ -34,23 +43,44 @@ public class XsCjAllTdkchView {
 
 	private String cjlrfsdm;
 
-	private BigDecimal djcj;
+	private String djm;
 
-	private String xsZwcj;
-
-	private String xsYwcj;
-
-//	private String djm;
-//
-//	private String ywdjm;
+	private String ywdjm;
 
 	@Id
-	public XsCjAlltdkchViewPk getId() {
-		return id;
+	public String getXh() {
+		return xh;
 	}
 
-	public void setId(XsCjAlltdkchViewPk id) {
-		this.id = id;
+	public void setXh(String xh) {
+		this.xh = xh;
+	}
+
+	@Column(name = "kch")
+	public String getKch() {
+		return kch;
+	}
+
+	public void setKch(String kch) {
+		this.kch = kch;
+	}
+
+	@Column(name = "kcm")
+	public String getKcm() {
+		return kcm;
+	}
+    
+	public void setKcm(String kcm) {
+		this.kcm = kcm;
+	}
+   
+	@Column(name = "zxjxjhh")
+	public String getZxjxjhh() {
+		return zxjxjhh;
+	}
+
+	public void setZxjxjhh(String zxjxjhh) {
+		this.zxjxjhh = zxjxjhh;
 	}
 
 	@Column(name = "kcsxdm")
@@ -72,20 +102,20 @@ public class XsCjAllTdkchView {
 	}
 
 	@Column(name = "kccj")
-	public BigDecimal getKccj() {
+	public String getKccj() {
 		return kccj;
 	}
 
-	public void setKccj(BigDecimal kccj) {
+	public void setKccj(String kccj) {
 		this.kccj = kccj;
 	}
 
 	@Column(name = "xf")
-	public Double getXf() {
+	public String getXf() {
 		return xf;
 	}
 
-	public void setXf(Double xf) {
+	public void setXf(String xf) {
 		this.xf = xf;
 	}
 
@@ -116,6 +146,33 @@ public class XsCjAllTdkchView {
 		this.ywkcsxmc = ywkcsxmc;
 	}
 
+	@Column(name = "cjlrfsdm")
+	public String getCjlrfsdm() {
+		return cjlrfsdm;
+	}
+
+	public void setCjlrfsdm(String cjlrfsdm) {
+		this.cjlrfsdm = cjlrfsdm;
+	}
+
+	@Column(name = "djm")
+	public String getDjm() {
+		return djm;
+	}
+
+	public void setDjm(String djm) {
+		this.djm = djm;
+	}
+
+	@Column(name = "ywdjm")
+	public String getYwdjm() {
+		return ywdjm;
+	}
+
+	public void setYwdjm(String ywdjm) {
+		this.ywdjm = ywdjm;
+	}
+
 	@Transient
 	public String getZwksxq() {
 		return zwksxq;
@@ -132,60 +189,6 @@ public class XsCjAllTdkchView {
 
 	public void setYwksxq(String ywksxq) {
 		this.ywksxq = ywksxq;
-	}
-
-	@Column(name = "cjlrfsdm")
-	public String getCjlrfsdm() {
-		return cjlrfsdm;
-	}
-
-	public void setCjlrfsdm(String cjlrfsdm) {
-		this.cjlrfsdm = cjlrfsdm;
-	}
-
-	@Column(name = "djcj")
-	public BigDecimal getDjcj() {
-		return djcj;
-	}
-
-	public void setDjcj(BigDecimal djcj) {
-		this.djcj = djcj;
-	}
-
-//	@Column(name = "djm")
-//	public String getDjm() {
-//		return djm;
-//	}
-//
-//	public void setDjm(String djm) {
-//		this.djm = djm;
-//	}
-//
-//	@Column(name = "ywdjm")
-//	public String getYwdjm() {
-//		return ywdjm;
-//	}
-//
-//	public void setYwdjm(String ywdjm) {
-//		this.ywdjm = ywdjm;
-//	}
-
-	@Transient
-	public String getXsZwcj() {
-		return xsZwcj;
-	}
-
-	public void setXsZwcj(String xsZwcj) {
-		this.xsZwcj = xsZwcj;
-	}
-
-	@Transient
-	public String getXsYwcj() {
-		return xsYwcj;
-	}
-
-	public void setXsYwcj(String xsYwcj) {
-		this.xsYwcj = xsYwcj;
 	}
 
 }

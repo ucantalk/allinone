@@ -10,30 +10,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.aio.bean.SysYhmmbView;
 import com.aio.bean.XsCjAllTdkchView;
 import com.aio.dao.QueryGradeDao;
 
 @Transactional
 @Repository("queryGradeDao")
-public class QueryGradeDaoImpl implements QueryGradeDao {
-	@Autowired
-	private SessionFactory sessionFactory;
+public class QueryGradeDaoImpl extends BaseDaoImpl<Object, String> implements QueryGradeDao {
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<XsCjAllTdkchView> getByXh(String xh) throws SQLException {
-		Session session = sessionFactory.getCurrentSession();
-		String sql = "select a.kch,max(a.kcm) as kcm," + "max(a.ywkcm) as ywkcm," + "max(a.kcsxdm) as kcsxdm,"
-				+ "max(a.kcsxmc) as kcsxmc," + "max(a.kccj) as kccj," + "max(a.xf） as xf," + "max(a.kssj) as kssj,"
-				+ " " + " " + "max(a.cjlrfsdm) as cjlrfsdm "
-				+ "from code_cjdj c, modified_xs_cj_all_tdkch_view a,"
-				+ "(select kch,max(kccj) as kccj from modified_xs_cj_all_tdkch_view t where xh ='" + xh
-				+ "' group by kch) b " + "where xh ='" + xh
-				+ "' and a.kch=b.kch and a.kccj=b.kccj  group by a.kch order by kssj asc,kch asc";
-		// String sql = "select * from MODIFIED_XS_CJ_ALL_TDKCH_VIEW where xh='"
-		// + xh + "' order by kssj asc,kch asc ";
-		Query query = session.createSQLQuery(sql).addEntity(XsCjAllTdkchView.class);
-		return query.list();
+	public List<Object> getByXh(String xh) throws SQLException {
+		try {
+			// String sql ="select xh from modified_xs_cj_all_tdkch_view";
+			String sql = "select a.xh as xh,a.kch as kch,a.zxjxjhh as zxjxjhh,(max(a.kcm)) as kcm,(max(a.ywkcm)) as ywkcm,(max(a.kcsxdm)) as kcsxdm,"
+					+ "(max(a.kcsxmc)) as kcsxmc,(max(ywkcsxmc)) as ywkcsxmc,(max(a.kccj)) as kccj,"
+					+ "(max(a.xf)) as xf,(max(a.kssj)) as kssj,(max(a.djm)) as djm,(max(a.ywdjm)) as ywdjm,"
+					+ "(max(a.cjlrfsdm)) as cjlrfsdm from modified_xs_cj_all_tdkch_view a,"
+					+ "(select t.kch,(max(t.kccj)) as kccj from modified_xs_cj_all_tdkch_view t where t.xh ='" + xh
+					+ "' group by t.kch) b " + "where a.xh ='" + xh
+					+ "' and a.kch=b.kch and a.kccj=b.kccj  group by a.xh,a.kch,a.zxjxjhh order by kssj asc,kch asc";
+			List<Object> list = super.getListBySQL(sql);
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 
 	}
 

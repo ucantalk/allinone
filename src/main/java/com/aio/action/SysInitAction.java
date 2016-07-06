@@ -54,9 +54,7 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 	public String execute() {
 		result = new HashMap<String, Object>();
 		try {
-			@SuppressWarnings("restriction")
 			BASE64Encoder encoder = new BASE64Encoder();
-
 			logger.info("--读取学生学籍信息开始--");
 			XsXjbView xsXjbView = queryUserInfoService.getUserInfoByXh(xh);
 			logger.info("--读取学生学籍信息正常结束,向result存放学籍信息--");

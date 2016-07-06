@@ -7,6 +7,6 @@ import com.aio.bean.XsCjAllTdkchView;
 
 public interface QueryGradeDao {
 
-	public List<XsCjAllTdkchView> getByXh(String xh) throws SQLException;
+	public List<Object> getByXh(String xh) throws SQLException;
 
 }
