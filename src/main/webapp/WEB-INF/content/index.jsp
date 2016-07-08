@@ -11,11 +11,12 @@
 <meta charset="utf-8">
 <title>首页</title>
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=basePath%>css/index.css">
+<link rel="stylesheet" href="<%=basePath%>css/jquery-confirm.css">
 <link rel="stylesheet" href="<%=basePath%>css/index.css">
 <link rel="stylesheet" href="<%=basePath%>css/jquery.toastmessage.css">
 <script type="text/javascript"
 	src="<%=basePath%>js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery-confirm.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/jquery.toastmessage.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/index.js"></script>
@@ -28,24 +29,28 @@
 	<div class="container">
 		<!-- 空闲教室 -->
 		<div class="button">
-			<a action-type="kxjs"><img src="image/kxjs.png" /></a>
+			<a action-type="kxjs" href="javascript:void(0);"><img
+				src="<%=basePath%>images/kxjs.png" /></a>
 		</div>
 		<!-- 打印成绩 -->
 		<div class="button">
-			<a action-type="dycj" onClick="openPanel()"><img
-				src="image/dycj.png" /></a>
+			<a action-type="dycj" href="javascript:void(0);"
+				onClick="openPanel()"><img src="<%=basePath%>images/dycj.png" /></a>
 		</div>
 		<!-- 规章制度 -->
 		<div class="button">
-			<a action-type="gzzd"><img src="image/gzzd.png" /></a>
+			<a action-type="gzzd" href="javascript:void(0);"><img
+				src="<%=basePath%>images/gzzd.png" /></a>
 		</div>
 		<!-- 校历 -->
 		<div class="button">
-			<a action-type="xl"><img src="image/xl.png" /></a>
+			<a action-type="xl" href="javascript:void(0);"><img
+				src="<%=basePath%>images/xl.png" /></a>
 		</div>
 		<!-- 公告 -->
 		<div class="button">
-			<a action-type="gg"><img src="image/gg.png" /></a>
+			<a action-type="gg" href="javascript:void(0);"><img
+				src="<%=basePath%>images/gg.png" /></a>
 		</div>
 	</div>
 
@@ -56,23 +61,27 @@
 		<!-- 主面板 -->
 		<div class="m-panel">
 			<!-- 右上角关闭按钮 -->
-			<p class="right-top-close-button">
-				<a onclick="closePanel();"><img
-					src="<%=basePath%>image/close.png"></a>
-			</p>
-			<!--倒计时-->
-			<div class=""
-				style="position: absolute; left: 5px; top: 11px; font-size: 22px; color: #F03;">
-				<span id="cooldown"></span>
+			<div class="right-top-close-button" onclick="closePanel();">
+				<ul>
+					<li><img src="<%=basePath%>images/logo.png"/ ></li>
+					<li><h3>&nbsp;&nbsp;登录成绩打印系统</h3></li>
+					<li><h3>&nbsp;&nbsp;[30]</h3></li>
+					<li><h2>x</h2></li>
+				</ul>
 			</div>
+			<br />
 			<form action="init" method="POST">
 				<!--账号、密码-->
 				<div class="i-panel">
-					<div id="i_uName" class="text-span">
-						<span>账号</span> <input type="text" name="username" maxlength="16" />
+					<div id="i_uName" class="text-span input-group input-group-lg">
+						<span class="input-group-addon"><span
+							class="glyphicon glyphicon-user"></span></span> <input type="text"
+							class="form-control" placeholder="读一卡通或手动输入学号"> <br>
 					</div>
-					<div id="i_pWord" class="text-span">
-						<span>密码</span> <input type="password" name="password" />
+					<div id="i_pWord" class="text-span input-group input-group-lg ">
+						<span class="input-group-addon"><span
+							class="glyphicon glyphicon-lock"></span></span> <input type="password"
+							class="form-control" placeholder="密码">
 					</div>
 				</div>
 			</form>
@@ -138,11 +147,13 @@
 				</ul>
 			</div>
 			<br />
-			<!--登录、刷卡-->
-			<div class="button-box">
-				<button type="button" id="submit" class="btn btn-success btn-lg">
-					<big>登陆</big>
-				</button>
+			<div style="margin: 0 auto; width: 90%">
+				<!--登录、刷卡-->
+				<div class="button-box">
+					<button type="button" id="submit" class="btn btn-success btn-lg ">
+						<big>登录</big>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>

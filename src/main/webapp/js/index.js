@@ -5,7 +5,7 @@ var coolDown = {
 		// 倒计时的方法
 		if (coolDownTime > 0) {
 			coolDownTime--;
-			$("#cooldown").html("\u300c" + coolDownTime + "\u300d");
+			$("li:eq(2) h3").html("&nbsp;&nbsp;[" + coolDownTime + "]");
 
 		} else {
 			setTimeout("coolDown.returnLoginPage()", 1000);
@@ -13,7 +13,7 @@ var coolDown = {
 	},
 	returnLoginPage : function() {
 		// 关闭按钮的方法
-		$(".b-panle").hide();
+		closePanel();
 	}
 };
 
@@ -24,7 +24,7 @@ $(function() {
 		coolDownTime = 30;
 	});
 	$("#i_uName input").click(function() {
-		 
+
 		$("#i_pWord input").removeAttr("id");
 		$(this).val('');
 		$(this).attr("id", "writing");
@@ -35,22 +35,21 @@ $(function() {
 		$(this).attr("id", "writing");
 	});
 	// 账号不能为空
-	$('#dl').click(function() {
+	$('#submit').click(function() {
 		if ($("#i_uName input").val() == '') {
 			$().toastmessage('showWarningToast', "对不起，账号不可以为空！");
 			return false;
 		}
-		;
+
 		// 密码不能为空
 		if ($("#i_pWord input").val() == '') {
 
 			$().toastmessage('showWarningToast', "对不起，密码不可以为空！");
 			return false;
 		}
-		;
 
 		$.ajax({
-			url : "login/checkUser.action",
+			url : "login/checkUser",
 			dataType : "json",
 			async : true,
 			data : {
@@ -62,7 +61,7 @@ $(function() {
 				if (response == "201") {
 					alert("登陆成功");
 				} else {
-					alert("错误的用户名或者密码");
+					$().toastmessage('showErrorToast', "错误的用户名或者密码");
 				}
 			}
 		});
@@ -132,7 +131,8 @@ $(function() {
 
 // 显示灰色 jQuery 遮罩层
 function openPanel() {
-	coolDownTime = 30;
+	$("input").val("");
+	$("#i_uName input").attr("id", "writing");
 	$(".b-panel").show();
 }
 // 关闭灰色 jQuery 遮罩
