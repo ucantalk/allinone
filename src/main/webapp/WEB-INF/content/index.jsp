@@ -20,7 +20,10 @@
 	src="<%=basePath%>js/jquery.toastmessage.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/index.js"></script>
 </head>
-<body>
+<body oncontextmenu='return false' ondragstart='return false'
+	onselectstart='return false' onselect='document.selection.empty()'
+	oncopy='document.selection.empty()' onbeforecopy='return false'
+	onmouseup='document.selection.empty()'>
 
 	<div class="container">
 		<!-- 空闲教室 -->
@@ -62,15 +65,17 @@
 				style="position: absolute; left: 5px; top: 11px; font-size: 22px; color: #F03;">
 				<span id="cooldown"></span>
 			</div>
-			<!--账号、密码-->
-			<div class="i-panel">
-				<div id="i_uName" class="text-span">
-					<span>账号</span> <input type="text" name="username" maxlength="16" />
+			<form action="init" method="POST">
+				<!--账号、密码-->
+				<div class="i-panel">
+					<div id="i_uName" class="text-span">
+						<span>账号</span> <input type="text" name="username" maxlength="16" />
+					</div>
+					<div id="i_pWord" class="text-span">
+						<span>密码</span> <input type="password" name="password" />
+					</div>
 				</div>
-				<div id="i_pWord" class="text-span">
-					<span>密码</span> <input type="password" name="password" />
-				</div>
-			</div>
+			</form>
 			<br />
 			<!--虚拟键盘-->
 			<div id="keybord_area">
@@ -135,10 +140,9 @@
 			<br />
 			<!--登录、刷卡-->
 			<div class="button-box">
-				<button type="button" class="btn btn-success btn-lg">
-					<big>刷卡</big>
+				<button type="button" id="submit" class="btn btn-success btn-lg">
+					<big>登陆</big>
 				</button>
-				<button type="button" class="btn btn-success btn-lg">Success</button>
 			</div>
 		</div>
 	</div>

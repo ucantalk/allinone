@@ -2,16 +2,24 @@ package com.aio.interceptor;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import com.aio.action.SysInitAction;
+import com.aio.common.Constant;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
+
+
 public class BaseInterceptor extends AbstractInterceptor {
+	private static final Logger logger = Logger.getLogger(SysInitAction.class.getName());
 	private String sessionKeyUid;
 	private String sessionKeySid;
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		String actionName = invocation.getProxy().getActionName();
+		logger.info("--拦截器加载，拦截动作：" + actionName + "--");
 		if (actionName.equals("index")) {
 			return invocation.invoke();
 		}
@@ -23,7 +31,7 @@ public class BaseInterceptor extends AbstractInterceptor {
 				return "index";
 			}
 		} else {
-			return "401.4";
+			return Constant.PERMISSION_DENIED;
 		}
 	}
 
@@ -42,7 +50,5 @@ public class BaseInterceptor extends AbstractInterceptor {
 	public void setSessionKeySid(String sessionKeySid) {
 		this.sessionKeySid = sessionKeySid;
 	}
-	
-	
 
 }

@@ -224,7 +224,7 @@
 				<configuration>
 					<container>
 						<containerId>tomcat7x</containerId>
-						<home>e:\Work\apache-tomcat-8.0.32</home>
+						<home>c:\Work\apache-tomcat-8.0.32</home>
 					</container>
 					<configuration>
 						<type>standalone</type>

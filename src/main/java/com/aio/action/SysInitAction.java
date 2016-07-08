@@ -46,7 +46,7 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 	@Autowired
 	private QueryGradeService queryGradeService;
 
-	private String xh;
+	private String username;
 
 	private Map<String, Object> result;
 
@@ -56,12 +56,12 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 		try {
 			BASE64Encoder encoder = new BASE64Encoder();
 			logger.info("--读取学生学籍信息开始--");
-			XsXjbView xsXjbView = queryUserInfoService.getUserInfoByXh(xh);
+			XsXjbView xsXjbView = queryUserInfoService.getUserInfoByXh(username);
 			logger.info("--读取学生学籍信息正常结束,向result存放学籍信息--");
 			result.put("XsXj", xsXjbView);
 
 			logger.info("--读取学生照片信息开始");
-			XsZpView xsZpView = queryUserPhotoService.getUserPhotoByXh(xh);
+			XsZpView xsZpView = queryUserPhotoService.getUserPhotoByXh(username);
 			if (xsZpView == null) {
 				logger.warn("--读取学生照片信息结束，但学生照片数据为空,向session填空--");
 				result.put("XsZp", "");
@@ -71,7 +71,7 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 			}
 
 			logger.info("--读取学生成绩开始--");
-			List<XsCjAllTdkchView> list = queryGradeService.getCurrentGradeByXh(xh);
+			List<XsCjAllTdkchView> list = queryGradeService.getCurrentGradeByXh(username);
 			logger.info("--读取学生成绩结束，向session存放成绩信息--");
 			result.put("XsCj", list);
 
@@ -100,12 +100,12 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 		this.result = result;
 	}
 
-	public String getXh() {
-		return xh;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setXh(String xh) {
-		this.xh = xh;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override

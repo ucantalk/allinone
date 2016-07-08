@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aio.bean.SysYhmmbView;
+import com.aio.common.Constant;
 import com.aio.dao.LoginDao;
 import com.aio.exception.ConnectDBException;
 import com.aio.service.LoginService;
@@ -38,16 +39,16 @@ public class LoginServiceImpl implements LoginService {
 			if (userLogin != null) {
 				if (userLogin.getYhlbdm().equals("01")) {
 					if (userLogin.getMm().equals(mm)) {
-						return "200";
+						return Constant.CORRECT_USER;
 					}
-					return "201";
+					return Constant.WRONG_LOGIN_INFO;
 				}
-				return "505";
+				return Constant.INCORRECT_USER_TYPE;
 			}
-			return "404";
+			return Constant.DATA_ERROR;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new ConnectDBException ("连接数据库失败或者查询数据出错");
+			throw new ConnectDBException("连接数据库失败或者查询数据出错");
 		}
 
 	}
