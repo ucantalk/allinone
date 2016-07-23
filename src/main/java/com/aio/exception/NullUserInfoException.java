@@ -1,6 +1,6 @@
 package com.aio.exception;
 
-public class NullUserInfoException extends Throwable {
+public class NullUserInfoException extends RuntimeException {
 	public NullUserInfoException() {
 	};
 

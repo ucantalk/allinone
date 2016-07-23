@@ -1,26 +1,24 @@
 package com.aio.dao.impl;
 
-import java.sql.SQLException;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aio.bean.XsZpView;
 import com.aio.dao.QueryUserPhotoDao;
+import com.aio.exception.AioRuntimeException;
 
 @Transactional
 @Repository("queryUserPhotoDao")
-public class QueryUserPhotoDaoImpl implements QueryUserPhotoDao {
-	@Autowired
-	private SessionFactory sessionFactory;
+public class QueryUserPhotoDaoImpl extends BaseDaoImpl<XsZpView, String> implements QueryUserPhotoDao {
 
 	@Override
-	public XsZpView getByXh(String xh) throws SQLException {
-		Session session = sessionFactory.getCurrentSession();
-		return (XsZpView) session.get(XsZpView.class, xh);
+	public XsZpView getByXh(String xh) {
+		try {
+			XsZpView xsZpView = super.get(xh);
+			return xsZpView;
+		} catch (Exception e) {
+			throw new AioRuntimeException(e);
+		}
 	}
 
 }

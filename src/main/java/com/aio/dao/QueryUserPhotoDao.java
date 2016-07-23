@@ -6,6 +6,6 @@ import com.aio.bean.XsZpView;
 
 public interface QueryUserPhotoDao {
 
-	public XsZpView getByXh(String xh) throws SQLException;
+	public XsZpView getByXh(String xh);
 
 }

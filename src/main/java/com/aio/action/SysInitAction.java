@@ -29,12 +29,6 @@ import sun.misc.BASE64Encoder;
 @Namespace("/")
 public class SysInitAction extends ActionSupport implements SessionAware {
 
-	/**
-	 * 
-	 */
-
-	private static final long serialVersionUID = 5042159433280864037L;
-
 	private static final Logger logger = Logger.getLogger(SysInitAction.class.getName());
 
 	@Autowired
@@ -50,9 +44,12 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> result;
 
+	private Map<String, Object> session;
+
 	@Action(value = "init", results = { @Result(name = "success", location = "/WEB-INF/content/content.jsp") })
 	public String execute() {
 		result = new HashMap<String, Object>();
+		username = (String) session.get("userName");
 		try {
 			BASE64Encoder encoder = new BASE64Encoder();
 			logger.info("--读取学生学籍信息开始--");
@@ -100,17 +97,9 @@ public class SysInitAction extends ActionSupport implements SessionAware {
 		this.result = result;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	@Override
-	public void setSession(Map<String, Object> arg0) {
-
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 
 }

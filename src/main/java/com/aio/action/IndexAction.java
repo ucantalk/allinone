@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.aio.bean.SysConfig;
 import com.aio.common.Constant;
+import com.aio.common.Decrypt;
 import com.aio.exception.ConnectDBException;
 import com.aio.service.SysConfigService;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.media.jfxmedia.logging.Logger;
 
 @ParentPackage(value = "aio-default")
 @Namespace("/")
@@ -33,6 +35,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 				List<SysConfig> list = sysConfigService.getAllSysConfig();
 				for (SysConfig tmp : list) {
 					if (tmp.getId().equals(sysId)) {
+						session.put("sysId", sysId);
 						return SUCCESS;
 					}
 				}

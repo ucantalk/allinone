@@ -9,8 +9,8 @@ public class Constant {
 	/**
 	 * 错误的登陆信息（账号密码错误）201
 	 */
-	public static String WRONG_LOGIN_INFO = "201";
-
+	public static String INCORRECT_PASSWORD = "201";
+	
 	/**
 	 * 错误的用户类型 505
 	 */

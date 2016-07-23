@@ -5,6 +5,6 @@ import com.aio.exception.ConnectDBException;
 
 public interface QueryUserPhotoService {
 
-	public XsZpView getUserPhotoByXh(String xh) throws ConnectDBException;
+	public XsZpView getUserPhotoByXh(String xh);
 
 }

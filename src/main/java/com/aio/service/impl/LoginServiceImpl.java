@@ -1,7 +1,5 @@
 package com.aio.service.impl;
 
-import java.sql.SQLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.aio.bean.SysYhmmbView;
 import com.aio.common.Constant;
 import com.aio.dao.LoginDao;
+import com.aio.exception.AioRuntimeException;
 import com.aio.exception.ConnectDBException;
 import com.aio.service.LoginService;
 
@@ -31,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
 	 * @return 200 正确的用户 201 错误的密码 505 错误的用户权限 404 错误的用户名
 	 * 
 	 */
-	@Override
+
 	public String ifCorrectUser(String id, String mm) throws ConnectDBException {
 		SysYhmmbView userLogin;
 		try {
@@ -41,13 +40,12 @@ public class LoginServiceImpl implements LoginService {
 					if (userLogin.getMm().equals(mm)) {
 						return Constant.CORRECT_USER;
 					}
-					return Constant.WRONG_LOGIN_INFO;
+					return Constant.INCORRECT_PASSWORD;
 				}
 				return Constant.INCORRECT_USER_TYPE;
 			}
 			return Constant.DATA_ERROR;
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (AioRuntimeException e) {
 			throw new ConnectDBException("连接数据库失败或者查询数据出错");
 		}
 

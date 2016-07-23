@@ -1,6 +1,6 @@
 package com.aio.exception;
 
-public class NullUserScoreException extends Throwable {
+public class NullUserScoreException extends RuntimeException {
 	public NullUserScoreException() {
 	};
 

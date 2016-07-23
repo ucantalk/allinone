@@ -7,6 +7,6 @@ import com.aio.exception.ConnectDBException;
 
 public interface SysConfigService {
 
-	public List<SysConfig> getAllSysConfig() throws ConnectDBException;
-	
+	public List<SysConfig> getAllSysConfig();
+
 }

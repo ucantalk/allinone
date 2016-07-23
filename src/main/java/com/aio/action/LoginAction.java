@@ -33,14 +33,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	@Action(value = "/login/checkUser", results = {
 			@Result(name = "success", type = "json", params = { "root", "result" }) })
 	public String checkUser() {
-
 		try {
 			result = loginService.ifCorrectUser(userName, passWord);
 			if (result.equals("200")) {
 				session.put("userName", userName);
 			}
 		} catch (ConnectDBException e) {
-			e.printStackTrace();
 			result = "500";
 		}
 		return SUCCESS;
@@ -76,8 +74,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 
 	@Override
-	public void setSession(Map<String, Object> arg0) {
-		// TODO Auto-generated method stub
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 
 	}
 

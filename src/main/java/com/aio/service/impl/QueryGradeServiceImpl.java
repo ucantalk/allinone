@@ -1,6 +1,5 @@
 package com.aio.service.impl;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aio.bean.XsCjAllTdkchView;
 import com.aio.dao.QueryGradeDao;
+import com.aio.exception.AioRuntimeException;
 import com.aio.exception.ConnectDBException;
 import com.aio.exception.NullUserGradeException;
 import com.aio.service.QueryGradeService;
@@ -86,8 +86,7 @@ public class QueryGradeServiceImpl implements QueryGradeService {
 
 			}
 			throw new NullUserGradeException("读取学生数据出错:无此学生或学生数据为空");
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (AioRuntimeException e) {
 			throw new ConnectDBException("连接数据库失败或者查询数据出错");
 		}
 

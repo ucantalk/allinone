@@ -8,6 +8,6 @@ import com.aio.exception.NullUserGradeException;
 
 public interface QueryGradeService {
 
-	public List<XsCjAllTdkchView> getCurrentGradeByXh(String xh) throws NullUserGradeException,ConnectDBException;
+	public List<XsCjAllTdkchView> getCurrentGradeByXh(String xh);
 
 }

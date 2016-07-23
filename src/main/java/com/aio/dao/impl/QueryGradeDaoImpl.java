@@ -1,21 +1,19 @@
 package com.aio.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aio.dao.QueryGradeDao;
-
-
+import com.aio.exception.AioRuntimeException;
 
 @Transactional
 @Repository("queryGradeDao")
 public class QueryGradeDaoImpl extends BaseDaoImpl<Object, String> implements QueryGradeDao {
 
 	@Override
-	public List<Object> getByXh(String xh) throws SQLException {
+	public List<Object> getByXh(String xh) {
 		try {
 			String sql = "select a.xh as xh,a.kch as kch,a.zxjxjhh as zxjxjhh,(max(a.kcm)) as kcm,(max(a.ywkcm)) as ywkcm,(max(a.kcsxdm)) as kcsxdm,"
 					+ "(max(a.kcsxmc)) as kcsxmc,(max(ywkcsxmc)) as ywkcsxmc,(max(a.kccj)) as kccj,"
@@ -27,8 +25,7 @@ public class QueryGradeDaoImpl extends BaseDaoImpl<Object, String> implements Qu
 			List<Object> list = super.getListBySQL(sql);
 			return list;
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw new AioRuntimeException(e);
 		}
 
 	}

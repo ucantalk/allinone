@@ -1,6 +1,5 @@
 package com.aio.service.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aio.bean.SysConfig;
 import com.aio.dao.SysConfigDao;
+import com.aio.exception.AioRuntimeException;
 import com.aio.exception.ConnectDBException;
 import com.aio.service.SysConfigService;
 
@@ -24,8 +24,7 @@ public class SysConfigServiceImpl implements SysConfigService {
 		try {
 			List<SysConfig> list = sysConfigDao.getAll();
 			return list;
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (AioRuntimeException e) {
 			throw new ConnectDBException("数据库连接失败或者查询数据错误");
 		}
 

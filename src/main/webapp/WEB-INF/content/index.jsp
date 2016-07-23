@@ -14,17 +14,10 @@
 <link rel="stylesheet" href="<%=basePath%>css/jquery-confirm.css">
 <link rel="stylesheet" href="<%=basePath%>css/index.css">
 <link rel="stylesheet" href="<%=basePath%>css/jquery.toastmessage.css">
-<script type="text/javascript"
-	src="<%=basePath%>js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/jquery-confirm.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/jquery.toastmessage.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/index.js"></script>
 </head>
 <body oncontextmenu='return false' ondragstart='return false'
 	onselectstart='return false' onselect='document.selection.empty()'
-	oncopy='document.selection.empty()' onbeforecopy='return false'
-	onmouseup='document.selection.empty()'>
+	oncopy='document.selection.empty()' onbeforecopy='return false'>
 
 	<div class="container">
 		<!-- 空闲教室 -->
@@ -35,7 +28,7 @@
 		<!-- 打印成绩 -->
 		<div class="button">
 			<a action-type="dycj" href="javascript:void(0);"
-				onClick="openPanel()"><img src="<%=basePath%>images/dycj.png" /></a>
+				onClick="panel.show()"><img src="<%=basePath%>images/dycj.png" /></a>
 		</div>
 		<!-- 规章制度 -->
 		<div class="button">
@@ -61,7 +54,7 @@
 		<!-- 主面板 -->
 		<div class="m-panel">
 			<!-- 右上角关闭按钮 -->
-			<div class="right-top-close-button" onclick="closePanel();">
+			<div class="right-top-close-button" onclick="panel.close();">
 				<ul>
 					<li><img src="<%=basePath%>images/logo.png"/ ></li>
 					<li><h3>&nbsp;&nbsp;登录成绩打印系统</h3></li>
@@ -76,7 +69,7 @@
 					<div id="i_uName" class="text-span input-group input-group-lg">
 						<span class="input-group-addon"><span
 							class="glyphicon glyphicon-user"></span></span> <input type="text"
-							class="form-control" placeholder="读一卡通或手动输入学号"> <br>
+							class="form-control" placeholder="刷一卡通或手动输入学号"> <br>
 					</div>
 					<div id="i_pWord" class="text-span input-group input-group-lg ">
 						<span class="input-group-addon"><span
@@ -151,11 +144,18 @@
 				<!--登录、刷卡-->
 				<div class="button-box">
 					<button type="button" id="submit" class="btn btn-success btn-lg ">
-						<big>登录</big>
+						<big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</big>
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript"
+	src="<%=basePath%>js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery-confirm.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/jquery.toastmessage.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/index.js"></script>
 </html>

@@ -1,30 +1,10 @@
-var coolDownTime = 30;// 倒计时时间
-var shift = false, capslock = false;
-var coolDown = {
-	autoTime : function() {
-		// 倒计时的方法
-		if (coolDownTime > 0) {
-			coolDownTime--;
-			$("li:eq(2) h3").html("&nbsp;&nbsp;[" + coolDownTime + "]");
-
-		} else {
-			setTimeout("coolDown.returnLoginPage()", 1000);
-		}
-	},
-	returnLoginPage : function() {
-		// 关闭按钮的方法
-		closePanel();
-	}
-};
-
-// 连接输入框与键盘
 $(function() {
-	setIntervalFunction = setInterval("coolDown.autoTime()", 1000);
+	setIntervalFunction = setInterval("coolDown.countDown", 1000);
 	$("body").click(function() {
-		coolDownTime = 30;
+		coolDown.time = 30;
 	});
-	$("#i_uName input").click(function() {
 
+	$("#i_uName input").click(function() {
 		$("#i_pWord input").removeAttr("id");
 		$(this).val('');
 		$(this).attr("id", "writing");
@@ -34,39 +14,62 @@ $(function() {
 		$(this).val('');
 		$(this).attr("id", "writing");
 	});
-	// 账号不能为空
-	$('#submit').click(function() {
-		if ($("#i_uName input").val() == '') {
-			$().toastmessage('showWarningToast', "对不起，账号不可以为空！");
-			return false;
-		}
+	$('#submit')
+			.click(
+					function() {
+						if ($("#i_uName input").val() == '') {
+							$().toastmessage('showWarningToast', "请输入学号");
+							return false;
+						}
 
-		// 密码不能为空
-		if ($("#i_pWord input").val() == '') {
+						if ($("#i_pWord input").val() == '') {
+							$().toastmessage('showWarningToast', "请输入密码");
+							return false;
+						}
+						$(this)
+								.attr("disabled", "true")
+								.html(
+										"<big>&nbsp;&nbsp;&nbsp;&nbsp;登陆中&nbsp;&nbsp;&nbsp;&nbsp;</big>");
+						$
+								.ajax({
+									url : "login/checkUser",
+									timeout : 10000,
+									dataType : "json",
+									async : true,
+									data : {
+										"userName" : $("#i_uName input").val(),
+										"passWord" : $("#i_pWord input").val(),
+									},
+									type : "post",
+									success : function(response) {
+										$("#submit")
+												.removeAttr("disabled")
+												.html(
+														"<big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登陆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</big>");
+										if (response == "200") {
+											$("form").submit();
+										} else if (response == "500") {
+											$().toastmessage('showErrorToast',
+													"查询数据出错");
+										} else {
+											$().toastmessage('showErrorToast',
+													"错误的用户名或者密码");
+										}
+									},
+									complete : function(XMLHttpRequest, status) { // 请求完成后最终执行参数
+										if (status == 'timeout') { // 超时,status还有success,error等值的情况
+											$("#submit")
+													.removeAttr("disabled")
+													.html(
+															"<big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登陆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</big>");
+											$().toastmessage('showErrorToast',
+													"无法连接服务器，请稍后再试");
 
-			$().toastmessage('showWarningToast', "对不起，密码不可以为空！");
-			return false;
-		}
+										}
+									}
+								});
 
-		$.ajax({
-			url : "login/checkUser",
-			dataType : "json",
-			async : true,
-			data : {
-				"userName" : $("#i_uName input").val(),
-				"passWord" : $("#i_pWord input").val(),
-			},
-			type : "post",
-			success : function(response) {
-				if (response == "201") {
-					alert("登陆成功");
-				} else {
-					$().toastmessage('showErrorToast', "错误的用户名或者密码");
-				}
-			}
-		});
-
-	});
+					});
 
 	$('#keybord_panel li').click(
 			function() {
@@ -108,11 +111,9 @@ $(function() {
 				if ($this.hasClass('return'))
 					character = "\n";
 
-				// Uppercase letter
 				if ($this.hasClass('uppercase'))
 					character = character.toUpperCase();
 
-				// Remove shift once a key is clicked.
 				if (shift === true) {
 					$('.symbol span').toggle();
 					if (capslock === false)
@@ -121,7 +122,6 @@ $(function() {
 					shift = false;
 				}
 
-				// Add the character
 				$write.val($write.val()
 						+ character.replace("&amp;", "&").replace("&lt;", "<")
 								.replace("&gt;", ">"));
@@ -129,13 +129,40 @@ $(function() {
 
 })
 
-// 显示灰色 jQuery 遮罩层
-function openPanel() {
-	$("input").val("");
-	$("#i_uName input").attr("id", "writing");
-	$(".b-panel").show();
+var shift = false, capslock = false, coolDown = {
+	time : 30,
+	countDown : function() {
+		if (this.time > 0) {
+			this.time--;
+			$("li:eq(2) h3").html("&nbsp;&nbsp;[" + time + "]");
+
+		} else {
+			this.time = 30;
+			setTimeout("coolDown.exit", 1000);
+		}
+	},
+	exit : function() {
+		panel.close();
+	}
+};
+var panel = {
+	show : function() {
+		document.getElementsByTagName("input").value = "";
+		document.getElementsByTagName("input")[0].setAttribute("id", "writing");
+		documnet.getElementsByClassName("b-panel").style.display = "block";
+	},
+	close : function() {
+		documnet.getElementsByClassName("b-panel").style.display = "none";
+	}
+
 }
-// 关闭灰色 jQuery 遮罩
-function closePanel() {
-	$(".b-panel").hide();
-}
+
+// var openPanel = function() {
+// $("input").val("");
+// $("#i_uName input").attr("id", "writing");
+// $(".b-panel").show();
+// }
+//
+// var closePanel = function() {
+// $(".b-panel").hide();
+// }

@@ -6,5 +6,5 @@ import com.aio.exception.NullUserInfoException;
 
 public interface QueryUserInfoService {
 
-	public XsXjbView getUserInfoByXh(String xh) throws NullUserInfoException,ConnectDBException;
+	public XsXjbView getUserInfoByXh(String xh);
 }

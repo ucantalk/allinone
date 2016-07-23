@@ -1,7 +1,4 @@
-package com.aio.dao.impl;
-
-import java.sql.SQLException;
-import java.util.List;
+package com.aio.service.impl;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,21 +8,27 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.aio.dao.QueryGradeDao;
+import com.aio.exception.ConnectDBException;
+import com.aio.service.LoginService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-hibernate.xml" })
-public class QueryGradeDaoImplTest extends AbstractJUnit4SpringContextTests {
+public class LoginServiceImplTest extends AbstractJUnit4SpringContextTests {
 	@Autowired
-	private QueryGradeDao queryGradeDao;
+	private LoginService loginService;
 
 	@Before
 	public void setUp() throws Exception {
 	}
 
 	@Test
-	public void testGetByXh() {
-		List l = queryGradeDao.getByXh("2013211090");
+	public void test() {
+		try {
+			String result = loginService.ifCorrectUser("2012212511", "missyou123");
+		} catch (ConnectDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

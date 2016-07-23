@@ -6,5 +6,5 @@ import com.aio.bean.XsXjbView;
 
 public interface QueryUserInfoDao {
 
-	public XsXjbView getByXh(String xh) throws SQLException;
+	public XsXjbView getByXh(String xh);
 }
